@@ -23,7 +23,8 @@ class CSS extends ProviderBase implements ProviderInterface
             $contents = (new CSSmin())->run($contents);
         }
 
-        return preg_replace('/(url\([\'"]?)/', '$1'.$this->settings['asset'].dirname($public).'/', $contents);
+        return preg_replace( '/(url\((?!d|\'d|\"d))([\'"]?)/', '$1$2'.$this->settings['asset'].dirname($public).'/', $contents);
+
     }
 
     /**
